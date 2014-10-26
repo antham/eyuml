@@ -1,6 +1,16 @@
 # Eyuml [![Build Status](https://travis-ci.org/antham/eyuml.png?branch=master)](https://travis-ci.org/antham/eyuml)
 
-Write textual uml diagram from emacs using yuml.me
+Write textual uml diagram from emacs using [yuml.me](http://yuml.me)
+
+From :
+
+```
+(start)->(test)-><a>[yes]->(action 1)->(end),<a>[no]->(action 2)->(end)
+```
+
+Get :
+
+![alt tag](http://antham.github.io/eyuml/pictures/test.png)
 
 ## Features
 
