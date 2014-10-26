@@ -28,6 +28,10 @@
          (insert data)
          (write-file path)))
 
+(Given "^I insert \"\\(.+\\)\" in buffer$" "Add content to a buffer"
+       (lambda (data)
+         (insert data)))
+
 (Then "^I should be in buffer matching regexp \"\\(.+\\)\"$" "Match REGEXP against buffer-name"
       (lambda (expected)
         (let ((message "Expected to be in buffer '%s', but was in '%s'"))
@@ -46,6 +50,18 @@
                                                                              "File checksum doesn't match, current one is "
                                                                              (secure-hash 'md5
                                                                                           (current-buffer)))))))
+
+(Then "^I execute the action chain and see \"\\(.+\\)\" error$"
+      "Executes the action chain and catch error."
+      (lambda (error-message)
+        (condition-case err
+            (execute-kbd-macro espuds-action-chain)
+          (setq espuds-chain-active nil)
+          (error
+           (cl-assert (equal (error-message-string err) error-message) t (concat
+                                                                          "Error message is : "
+                                                                          (error-message-string
+                                                                           err)))))))
 
 (provide 'eyuml-steps)
 

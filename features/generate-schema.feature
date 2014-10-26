@@ -3,6 +3,17 @@ Feature: Generate document with current buffer
   As a user
   I send current buffer content to remote site
 
+  Scenario: I create a diagram an didn't record buffer in a file before
+    Given I switch to buffer "schema"
+    Given I clear the buffer
+    Given I insert "(start)->(test)->(end)" in buffer
+    Then I should be in buffer matching regexp "schema"
+    Given I start an action chain
+    And I press "M-x"
+    And I type "eyuml-create-activity-diagram"
+    When I press "RET"
+    Then I execute the action chain and see "You need to save this buffer in a file first" error
+
   Scenario: I create an activity diagram
     Given I switch to buffer "schema"
     Given I clear the buffer
