@@ -22,5 +22,31 @@
 
 ;;; Code:
 
+(Given "^I insert \"\\(.+\\)\" in buffer and save to \"\\(.+\\)\"$"
+       "Add content to a buffer and save it"
+       (lambda (data path)
+         (insert data)
+         (write-file path)))
 
-;;; eyuml-test.el ends here
+(Then "^I should be in buffer matching regexp \"\\(.+\\)\"$" "Match REGEXP against buffer-name"
+      (lambda (expected)
+        (let ((message "Expected to be in buffer '%s', but was in '%s'"))
+          (string-match expected (buffer-name)))))
+
+(Then "^check file \"\\(.+\\)\" exists after \"\\([0-9]+\\)\" seconds$"
+      (lambda (path seconds)
+        (sleep-for (string-to-number seconds))
+        (cl-assert (file-exists-p path) t "File doesn't exist")))
+
+(Then "^md5 checksum of \"\\(.+\\)\" is \"\\([0-9a-f]+\\)\"$"
+      (lambda (path checksum)
+        (with-temp-buffer
+          (insert-file-contents path)
+          (cl-assert (equal (secure-hash 'md5 (current-buffer)) checksum) t (concat
+                                                                             "File checksum doesn't match, current one is "
+                                                                             (secure-hash 'md5
+                                                                                          (current-buffer)))))))
+
+(provide 'eyuml-steps)
+
+;;; eyuml-steps.el ends here

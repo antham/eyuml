@@ -24,6 +24,64 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'cl)
+(require 'request)
+(require 's)
+
+(defgroup eyuml nil
+  "Write textual uml diagram using yuml.me."
+  :group 'eyuml)
+
+(defcustom eyuml-document-output-format "png"
+  "Define output picture format."
+  :group 'eyuml
+  :type '(choice (const :tag "jpg" "jpg")
+                 (const :tag "pdf" "pdf")
+                 (const :tag "png" "png")
+                 (const :tag "svg" "svg")))
+
+(defun eyuml-create-url (type)
+  "Create url from buffer to fetch document, TYPE could be class,usecase or activity."
+  (concat (concat "http://yuml.me/diagram/plain/" type "/")
+          (url-hexify-string (s-trim
+                              (buffer-substring-no-properties
+                               (point-min)
+                               (point-max)))) "." eyuml-document-output-format))
+
+
+(defun eyuml-create-file-name ()
+  "Create filename from current buffer name and defined format."
+  (concat (buffer-file-name) "." eyuml-document-output-format))
+
+(defun eyuml-create-document (type)
+  "Fetch remote document, TYPE could be class,usecase or activity."
+  (request (eyuml-create-url type)
+           :parser 'buffer-string
+           :success (function*
+                     (lambda (&key data &allow-other-keys)
+                       (when data
+                         (with-temp-file
+                             (eyuml-create-file-name)
+                           (insert data)))))))
+
+;;;###autoload
+(defun eyuml-create-class-diagram ()
+  "Create class diagram."
+  (interactive)
+  (eyuml-create-document "class"))
+
+;;;###autoload
+(defun eyuml-create-activity-diagram ()
+  "Create activity diagram."
+  (interactive)
+  (eyuml-create-document "activity"))
+
+;;;###autoload
+(defun eyuml-create-usecase-diagram ()
+  "Create usecase diagram."
+  (interactive)
+  (eyuml-create-document "usecase"))
+
 (provide 'eyuml)
 
 ;; Local Variables:
