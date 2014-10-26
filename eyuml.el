@@ -22,6 +22,15 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+
+;; Refer to yuml.me site to understand how to represent uml diagram with text
+
+;; You get three functions (each corresponding to a sort of diagram) that you can map to key :
+
+;; (global-set-key (kbd "C-c a") 'eyuml-create-activity-diagram)
+;; (global-set-key (kbd "C-c c") 'eyuml-create-class-diagram)
+;; (global-set-key (kbd "C-c u") 'eyuml-create-usecase-diagram)
+
 ;;; Code:
 
 (require 'cl)
