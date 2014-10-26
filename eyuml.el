@@ -33,7 +33,6 @@
 
 ;;; Code:
 
-(require 'cl)
 (require 'request)
 (require 's)
 
@@ -51,9 +50,8 @@
 
 (defun eyuml-check-buffer-is-tied-to-file ()
   "Ensure buffer is tied to a file."
-  (if (not (buffer-file-name))
-      (error
-       "You need to save this buffer in a file first")))
+  (unless (buffer-file-name)
+    (error "You need to save this buffer in a file first")))
 
 (defun eyuml-create-url (type)
   "Create url from buffer to fetch document, TYPE could be class,usecase or activity."
