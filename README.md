@@ -34,7 +34,7 @@ You can pull it from here and you have to add in your emacs config :
 
 ### Usage
 
-You get three functions (each corresponding to a kind) that you can map to key to generate diagram :
+You get three functions (for every sort of diagram) that you can map :
 
 ```elisp
 (global-set-key (kbd "C-c a") 'eyuml-create-activity-diagram)
