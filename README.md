@@ -1,4 +1,4 @@
-# Eyuml [![Build Status](https://travis-ci.org/antham/eyuml.png?branch=master)](https://travis-ci.org/antham/eyuml)
+# Eyuml [![Build Status](https://travis-ci.org/antham/eyuml.png?branch=master)](https://travis-ci.org/antham/eyuml) [![MELPA](http://melpa.org/packages/eyuml-badge.svg)](http://melpa.org/#/eyuml)
 
 Write textual uml diagram from emacs using [yuml.me](http://yuml.me)
 
