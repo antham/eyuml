@@ -42,7 +42,7 @@
   :group 'eyuml)
 
 (defcustom eyuml-document-output-format "png"
-  "Define output picture format."
+  "Define document output format."
   :group 'eyuml
   :type '(choice (const :tag "jpg" "jpg")
                  (const :tag "pdf" "pdf")
