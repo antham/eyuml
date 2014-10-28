@@ -45,3 +45,5 @@ You get three functions (for every sort of diagram) that you can map :
 (global-set-key (kbd "C-c c") 'eyuml-create-class-diagram)
 (global-set-key (kbd "C-c u") 'eyuml-create-usecase-diagram)
 ```
+
+Write your diagram in a buffer, save it and run one of this function according to your diagram. As a result, you get a picture next to the place where you recorded your diagram.
