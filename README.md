@@ -14,7 +14,7 @@ Get :
 
 ## Features
 
-- Select from various output format to generate diagram : jpg,pdf,png or svg
+- Select from various output format to generate diagram : jpg,pdf,png or svg (customize-group: eyuml)
 
 ## Getting started
 

@@ -36,9 +36,9 @@
 (require 'request)
 (require 's)
 
+;;;###autoload
 (defgroup eyuml nil
-  "Write textual uml diagram using yuml.me."
-  :group 'eyuml)
+  "Write textual uml diagram using yuml.me.")
 
 (defcustom eyuml-document-output-format "png"
   "Define document output format."
