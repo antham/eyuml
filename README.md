@@ -47,3 +47,29 @@ You get three functions (for every sort of diagram) that you can map :
 ```
 
 Write your diagram in a buffer, save it and run one of this function according to your diagram. As a result, you get a picture next to the place where you recorded your diagram.
+
+### Tests
+
+First you need to install cask :
+
+```bash
+curl -fsSkL https://raw.github.com/cask/cask/master/go | python
+```
+
+Add cask to your path :
+
+```bash
+export PATH=$PATH:/home/YOUR_USERNAME/.cask/bin
+```
+
+Download dependencies using cask :
+
+```bash
+make downloads
+```
+
+Run tests :
+
+```
+make test
+```
