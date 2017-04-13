@@ -56,6 +56,4 @@
  ;; After when everything has been run
  )
 
-(provide 'env)
-
 ;;; env.el ends here
