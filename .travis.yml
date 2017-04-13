@@ -12,12 +12,6 @@
 ###
 
 ###
-### language
-###
-
-language: emacs-lisp
-
-###
 ### limit build attempts to defined branches
 ###
 ### notes
@@ -39,11 +33,14 @@ language: emacs-lisp
 ### runtime initialization
 ###
 
+addons:
+  apt:
+    sources:
+      - sourceline: 'ppa:kelleyk/emacs'
+    packages:
+      - emacs25 emacs25-el
+
 before_install:
-  - sudo add-apt-repository -y ppa:cassou/emacs &&
-    sudo apt-get -qq update &&
-    sudo apt-get -qq -f install &&
-    sudo apt-get -qq install emacs24 emacs24-el
   - git submodule --quiet update --init --recursive
   - curl -fsSkL https://raw.github.com/cask/cask/master/go | python;
   - export PATH="${HOME}/.cask/bin:$PATH"
